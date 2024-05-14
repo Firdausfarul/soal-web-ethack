@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for, session, f
 from werkzeug.security import generate_password_hash, check_password_hash
 import sqlite3
 import requests
+from xssbot import visit_report
 
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'  # Replace with your actual secret key
@@ -110,18 +111,8 @@ def profile(identifier):
 def report():
     if request.method == 'POST':
         url = request.form['url']
-        flag_cookie = 'flag=your_flag_here'  # Replace with your actual flag
-
-        try:
-            response = requests.get(url, cookies={'flag': flag_cookie})
-            if response.status_code == 200:
-                flash('Request successful. Check your URL for the flag!')
-            else:
-                flash(f'Request failed with status code: {response.status_code}')
-        except requests.RequestException as e:
-            flash(f'An error occurred: {e}')
-
-        return redirect(url_for('report'))
+        visit_report(url)
+        flash('Report submitted!')
     return render_template('report.html')
 
 @app.route('/logout')
