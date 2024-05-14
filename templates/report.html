@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Report XSS</title>
+</head>
+<body>
+    <h1>Report XSS Vulnerability</h1>
+    <form method="post" action="/report">
+        <label for="url">URL:</label>
+        <input type="text" name="url" required><br>
+        <input type="submit" value="Submit Report">
+    </form>
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul>
+          {% for message in messages %}
+            <li>{{ message }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+</body>
+</html>
