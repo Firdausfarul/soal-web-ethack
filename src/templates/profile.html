@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile</title>
+</head>
+<body>
+    <h1>Profile Page</h1>
+    <p>Welcome, {{ username }}!</p>
+    {% if profile_pic_url %}
+        <!-- Direct embedding for SVG XSS vulnerability -->
+        <div>
+            <img src="{{ profile_pic_url }}" alt="Profile Picture" width="150">
+            {{ img|safe }}
+        </div>
+    {% else %}
+        <p>No profile picture provided.</p>
+    {% endif %}
+    <br>
+    <a href="/logout">Logout</a>
+</body>
+</html>
+
