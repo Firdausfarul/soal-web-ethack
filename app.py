@@ -101,9 +101,11 @@ def profile(identifier):
     else:
         user = conn.execute('SELECT * FROM users WHERE username = ?', (identifier,)).fetchone()
     conn.close()
-
+    
+    img = requests.get(user['profile_pic_url'])
+    img = img.content.decode()
     if user:
-        return render_template('profile.html', username=user['username'], profile_pic_url=user['profile_pic_url'])
+        return render_template('profile.html', username=user['username'], profile_pic_url=user['profile_pic_url'], img=img)
     else:
         return 'User not found', 404
 
@@ -111,6 +113,7 @@ def profile(identifier):
 def report():
     if request.method == 'POST':
         url = request.form['url']
+        print("ZCZC DEBUGGING ZCZC")
         visit_report(url)
         flash('Report submitted!')
     return render_template('report.html')

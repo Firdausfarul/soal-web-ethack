@@ -4,37 +4,34 @@ from selenium.webdriver.support.ui import WebDriverWait
 import chromedriver_autoinstaller
 
 def visit_report(url):
-    # Automatically download and install chromedriver
-    chromedriver_autoinstaller.install()
-
     options = Options()
     # Comment out headless option to run in a regular browser window
-    # options.add_argument('--headless')
-    options.add_argument('--no-sandbox')
-    options.add_argument('--disable-dev-shm-usage')
-    options.add_argument('--disable-infobars')
-    options.add_argument('--disable-background-networking')
-    options.add_argument('--disable-default-apps')
-    options.add_argument('--disable-extensions')
-    options.add_argument('--disable-gpu')
-    options.add_argument('--disable-sync')
-    options.add_argument('--disable-translate')
-    options.add_argument('--hide-scrollbars')
-    options.add_argument('--metrics-recording-only')
-    options.add_argument('--mute-audio')
-    options.add_argument('--no-first-run')
-    options.add_argument('--dns-prefetch-disable')
-    options.add_argument('--safebrowsing-disable-auto-update')
-    options.add_argument('--media-cache-size=1')
-    options.add_argument('--disk-cache-size=1')
-    options.add_argument('--user-agent=BugHTB/1.0')
-
+    options.add_argument('headless')
+    options.add_argument('no-sandbox')
+    options.add_argument('disable-dev-shm-usage')
+    options.add_argument('disable-infobars')
+    options.add_argument('disable-background-networking')
+    options.add_argument('disable-default-apps')
+    options.add_argument('disable-extensions')
+    options.add_argument('disable-gpu')
+    options.add_argument('disable-sync')
+    options.add_argument('disable-translate')
+    options.add_argument('hide-scrollbars')
+    options.add_argument('metrics-recording-only')
+    options.add_argument('mute-audio')
+    options.add_argument('no-first-run')
+    options.add_argument('dns-prefetch-disable')
+    options.add_argument('safebrowsing-disable-auto-update')
+    options.add_argument('media-cache-size=1')
+    options.add_argument('disk-cache-size=1')
+    options.add_argument('user-agent=BugHTB/1.0')
+    options.add_argument("--user-data-dir=~/ethack/")
     # Initialize the Chrome browser
     browser = webdriver.Chrome(options=options)
 
     try:
         # Open initial URL
-        browser.get('http://127.0.0.1:5000/')
+        browser.get(url)
 
         # Add a cookie to the browser
         browser.add_cookie({

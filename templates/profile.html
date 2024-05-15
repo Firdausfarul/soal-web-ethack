@@ -11,7 +11,7 @@
         <!-- Direct embedding for SVG XSS vulnerability -->
         <div>
             <img src="{{ profile_pic_url }}" alt="Profile Picture" width="150">
-            <object data="{{ profile_pic_url }}" width="150"></object>
+            {{ img|safe }}
         </div>
     {% else %}
         <p>No profile picture provided.</p>
