@@ -62,8 +62,9 @@ def register():
         password = sanitize_input(request.form['password'])
         try :
             profile_pic_url = sanitize_input(request.form['profile_pic_url'])
+            assert profile_pic_url.endswith('.svg')
         except:
-            profile_pic_url = "https://pbs.twimg.com/profile_images/1735030914382749699/iwS0_jHR_400x400.jpg"
+            profile_pic_url = "https://www.svgrepo.com/show/530613/camera.svg"
 
         conn = get_db_connection()
         try:
