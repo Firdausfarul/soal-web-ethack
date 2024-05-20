@@ -114,7 +114,6 @@ def profile(identifier):
 def report():
     if request.method == 'POST':
         url = request.form['url']
-        print("ZCZC DEBUGGING ZCZC")
         visit_report(url)
         flash('Report submitted!')
     return render_template('report.html')

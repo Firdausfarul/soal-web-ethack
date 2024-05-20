@@ -25,7 +25,6 @@ def visit_report(url):
     options.add_argument('media-cache-size=1')
     options.add_argument('disk-cache-size=1')
     options.add_argument('user-agent=BugHTB/1.0')
-    options.add_argument("--user-data-dir=~/ethack/")
     # Initialize the Chrome browser
     browser = webdriver.Chrome(options=options)
 
